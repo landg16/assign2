@@ -34,7 +34,8 @@ public class Piece {
 	 Defines a new piece given a TPoint[] array of its body.
 	 Makes its own copy of the array and the TPoints inside it.
 	*/
-	public Piece(TPoint[] points) {
+	public Piece
+	(TPoint[] points) {
 		body = points.clone();
 		width = 0;
 		height = 0;
@@ -253,8 +254,4 @@ public class Piece {
 		TPoint[] array = points.toArray(new TPoint[0]);
 		return array;
 	}
-
-	
-
-
 }

@@ -21,36 +21,35 @@ public class PieceTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 		pyr1 = new Piece(Piece.PYRAMID_STR);
 		pyr2 = pyr1.computeNextRotation();
 		pyr3 = pyr2.computeNextRotation();
 		pyr4 = pyr3.computeNextRotation();
-		
+
 		s = new Piece(Piece.S1_STR);
 		sRotated = s.computeNextRotation();
 	}
-	
+
 	// Here are some sample tests to get you started
-	
+
 	@Test
 	public void testSampleSize() {
 		// Check size of pyr piece
 		assertEquals(3, pyr1.getWidth());
 		assertEquals(2, pyr1.getHeight());
-		
+
 		// Now try after rotation
 		// Effectively we're testing size and rotation code here
 		assertEquals(2, pyr2.getWidth());
 		assertEquals(3, pyr2.getHeight());
-		
+
 		// Now try with some other piece, made a different way
 		Piece l = new Piece(Piece.STICK_STR);
 		assertEquals(1, l.getWidth());
 		assertEquals(4, l.getHeight());
 	}
-	
-	
+
 	// Test the skirt returned by a few pieces
 	@Test
 	public void testSampleSkirt() {
@@ -58,10 +57,22 @@ public class PieceTest {
 		// right for arrays.
 		assertTrue(Arrays.equals(new int[] {0, 0, 0}, pyr1.getSkirt()));
 		assertTrue(Arrays.equals(new int[] {1, 0, 1}, pyr3.getSkirt()));
-		
+
 		assertTrue(Arrays.equals(new int[] {0, 0, 1}, s.getSkirt()));
 		assertTrue(Arrays.equals(new int[] {1, 0}, sRotated.getSkirt()));
 	}
-	
-	
+
+	@Test
+	public void testEZMethods() {
+		assertArrayEquals(pyr1.getBody(), new Piece(Piece.PYRAMID_STR).getBody());
+		assertArrayEquals(pyr2.getBody(), pyr1.computeNextRotation().getBody());
+		assertArrayEquals(pyr3.getBody(), pyr2.computeNextRotation().getBody());
+		assertArrayEquals(pyr4.getBody(), pyr3.computeNextRotation().getBody());
+		Piece[] pieces = Piece.getPieces();	// the array of root pieces
+		assertEquals(4, pieces[Piece.STICK].fastRotation().getWidth());
+		assertEquals(4, pieces[Piece.STICK].computeNextRotation().getWidth());
+		assertEquals(pieces[Piece.STICK].computeNextRotation().getWidth(), pieces[Piece.STICK].fastRotation().getWidth());
+	}
+
+
 }
