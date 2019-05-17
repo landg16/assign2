@@ -246,6 +246,7 @@ public class Piece {
 				points.add(new TPoint(x, y));
 			}
 		}
+
 		catch (NumberFormatException e) {
 			throw new RuntimeException("Could not parse x,y string:" + string);
 		}

@@ -174,10 +174,10 @@ public class BoardTest {
 
 		b2.commit();
 		b2.place(stick, 0, 0);
-		b2.commit();
 		b2.undo();
-		assertEquals(1, b2.getMaxHeight());
-		assertEquals(4, b2.getRowWidth(0));
-		assertEquals(1, b2.getColumnHeight(0));
+		b2.commit();
+		assertEquals(0, b2.getMaxHeight());
+		assertEquals(0, b2.getRowWidth(0));
+		assertEquals(0, b2.getColumnHeight(0));
 	}
 }

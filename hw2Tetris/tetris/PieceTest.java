@@ -74,5 +74,9 @@ public class PieceTest {
 		assertEquals(pieces[Piece.STICK].computeNextRotation().getWidth(), pieces[Piece.STICK].fastRotation().getWidth());
 	}
 
+	@Test(expected = RuntimeException.class)
+	public void testException() {
+		new Piece("a,b,c,d,e,f,h,0");
+	}
 
 }
